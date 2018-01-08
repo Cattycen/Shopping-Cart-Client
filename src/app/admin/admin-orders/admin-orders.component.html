@@ -1,0 +1,20 @@
+<h1>Orders</h1>
+<table class="table">
+  <thead>
+  <tr>
+    <th>Customer</th>
+    <th>Address</th>
+    <th>City</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let order of orders">
+    <td>{{ order.name }}</td>
+    <td>{{ order.addressLine1 + ' ' + order.addressLine2}}</td>
+    <td>
+      {{order.city}}
+    </td>
+  </tr>
+  </tbody>
+</table>
+

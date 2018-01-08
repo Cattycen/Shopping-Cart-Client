@@ -1,0 +1,59 @@
+
+<div class="container" *ngIf="!cart">
+  <h2>Your Shopping Cart is empty!</h2>
+  <br><br>
+  <h3>There are something you may like</h3>
+  <div class="row">
+    <ng-container *ngFor="let p of subProduct; let i = index">
+      <div class="col">
+        <app-product-card [product]="p"></app-product-card>
+      </div>
+      <div *ngIf="(i + 1)%3 === 0" class="w-100"></div>
+    </ng-container>
+  </div>
+  <p><a routerLink="/">Click here to add more items</a></p>
+</div>
+
+
+<div class="row col-10" *ngIf="cart">
+  <p>
+    You have <strong>{{ totalItem }}</strong> items in your shopping cart.
+  </p>
+  <table class="table">
+    <thead>
+    <tr>
+      <th></th>
+      <th>Product</th>
+      <th class="text-center" style="width: 230px">Quantity</th>
+      <th class="text-right" style="width: 200px">Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of cart">
+      <td>
+        <div [style.backgroundImage]="'url(' + item[0].imageUrl + ')'" class="thumbnail">
+        </div>
+      </td>
+      <td>
+        {{ item[0].title }}
+      </td>
+      <td>
+        <app-quantity [product]="item[0]" [shopping-cart]="item[1]">
+        </app-quantity>
+      </td>
+      <td class="text-right">
+        {{ item[0].price | currency:'USD':true }}
+      </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th class="text-right">{{ totalMoney | transferToNumber | currency:'USD':true }}</th>
+    </tr>
+    </tfoot>
+  </table>
+  <button *ngIf="totalItem" class="btn btn-primary checkout-btn" (click)="checkOut()">Check Out</button>
+</div>

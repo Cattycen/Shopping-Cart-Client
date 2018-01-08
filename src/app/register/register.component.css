@@ -1,0 +1,13 @@
+#register{
+  background-color: #ffa100;
+  color: #fff;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+  border: none;
+  height: 50px;
+  line-height: 40px;
+  font-weight: bold;
+}
+
+.fa-user-plus{
+  color:#f25950;
+}
